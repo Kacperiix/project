@@ -1,5 +1,19 @@
-.App {
-  text-align: center;
+.form{
+  input,  button {
+    margin: 20px;
+    padding: 10px 20 px;
+    border: 2px solid gray;
+    background-color: #fff;
+    transition: .3s;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #000;
+    color: white;
+    border-color: black;
+  }
 }
-
-

@@ -1,8 +1,7 @@
-import './App.css';
 import {  useState } from 'react';
 import Form from './Form';
-import './App.css';
 import Result from './Result';
+import './App.css';
 
 const APIKey = 'efa2ef11f117f7485b2fca8e87a3a2f5'
 
@@ -41,36 +40,38 @@ const App = () => {
       })
       .then(response => response.json())
       .then(data => {
+        console.log(data)
         const time = new Date().toLocaleString()
-        setState(prev=> ({
-          error: false,
+        setState({
+          err: false,
           date: time,
-          city: city,
           sunrise: data.sys.sunrise,
           sunset: data.sys.sunset,
           temp: data.main.temp,
           pressure: data.main.pressure,
           wind: data.wind,
-        }))
+          city: data.name,
+          clouds: data.clouds.all
+        })
       })
       .catch(err => {
         console.log(err);
-        setState(prev=>({
+        setState(prevState=>({
           err: true,
-          ...prev
+          city: prevState.value
         }))
       })
 
   }
 
     return (
-    <div className='App'>
+    <div>
       <Form 
         value={city} 
         change={handleInputChange}
         submit={handleCitySubmit}  
       />
-      <Result weather ={state} />
+      <Result weather={state} />
     </div>
     );
   
